@@ -38,6 +38,12 @@ const navigation = () => {
       openInNewTab: true
     },
     {
+      title: 'Confirm',
+      icon: AccountPlusOutline,
+      path: '/pages/confirm',
+      openInNewTab: false
+    },
+    {
       title: 'Error',
       icon: AlertCircleOutline,
       path: '/pages/error',

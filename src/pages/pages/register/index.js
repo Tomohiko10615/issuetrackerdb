@@ -43,6 +43,8 @@ import * as Yup from 'yup'
 
 import { rootUrl } from 'src/@core/utils/constants'
 
+import { useNavigate } from "react-router-dom";
+
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '28rem' }
@@ -121,6 +123,7 @@ const RegisterPage = () => {
     onSubmit: async () => {
       const newUser = formik.values
       const url = rootUrl + "/register"
+      //const navigate = useNavigate();
       try {
         const response = await fetch(url, {
           method: 'POST',
@@ -129,10 +132,15 @@ const RegisterPage = () => {
             'Content-Type': 'application/json'
           }
         })
-        const result = await response.json()
-        return alert(result);
+        const result = await response.text();
+        if (result == "success") {
+          window.location.href = "/pages/confirm";
+        }
+        return result;
+
         
       } catch (error) {
+        alert(error)
         throw error
       }
     }
